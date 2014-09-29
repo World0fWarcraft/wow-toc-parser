@@ -1,5 +1,5 @@
 # wow-toc
-
+[![Build Status](http://img.shields.io/travis/zekesonxx/wow-toc.svg)](https://travis-ci.org/zekesonxx/wow-toc)
 World Of Warcraft addon `.toc` file parser. Written in Node.js.
 
 Built on the documentation at [Wowpedia](http://wowpedia.org/TOC_format).
