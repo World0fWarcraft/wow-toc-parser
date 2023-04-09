@@ -1,10 +1,11 @@
 {
-  "name": "wow-toc",
+  "name": "wow-addon-toc",
   "version": "0.1.0",
   "description": "World Of Warcraft addon toc file parser",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/_mocha -R spec"
+    "test": "node node_modules/mocha/bin/_mocha -R spec",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -12,20 +13,20 @@
   },
   "keywords": [
     "wow",
+    "addon",
     "toc",
     "parser"
   ],
-  "author": "Zeke Sonxx <github.com/zekesonxx>",
-  "license": "MIT",
+  "author": "Ulf Gebhardt",
+  "license": "Apache2.0",
   "bugs": {
     "url": "https://github.com/zekesonxx/wow-toc/issues"
   },
   "homepage": "https://github.com/zekesonxx/wow-toc",
-  "dependencies": {
-    "debug": "^2.0.0"
-  },
   "devDependencies": {
+    "@types/node": "^18.15.11",
     "mocha": "^1.21.4",
-    "should": "^4.0.4"
+    "should": "^4.0.4",
+    "typescript": "^5.0.4"
   }
 }
