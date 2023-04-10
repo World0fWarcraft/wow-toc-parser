@@ -1,7 +1,7 @@
 {
-  "name": "wow-addon-toc",
-  "version": "0.1.0",
-  "description": "World Of Warcraft addon toc file parser",
+  "name": "wow-toc-parser",
+  "version": "1.0.0",
+  "description": "World Of Warcraft Addon .toc file parser",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
