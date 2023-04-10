@@ -1,24 +1,31 @@
-# wow-toc
-[![Build Status](http://img.shields.io/travis/zekesonxx/wow-toc.svg)](https://travis-ci.org/zekesonxx/wow-toc)
+# wow-toc-parser
+World Of Warcraft addon `.toc` file parser. Written in typescript.
 
-World Of Warcraft addon `.toc` file parser. Written in Node.js.
+## Ressources
+This implementation is based on based on [wow-toc](https://github.com/zekesonxx/wow-toc) by [Zoey Mertes](https://github.com/zekesonxx).
 
-Built on the documentation at [Wowpedia](http://wowpedia.org/TOC_format).
+Furthermore the following documentation was used to create this tool:
+- http://wowpedia.org/TOC_format
+- https://wowwiki-archive.fandom.com/wiki/TOC_format
+- https://wowpedia.fandom.com/wiki/TOC_format
 
 ## Usage
+// TODO publish
 `$ npm install wow-toc`
 
-````js
-var wowtoc = require('wow-toc');
+````ts
+import { open } from 'fs/promises';
+import { parse } from 'wow-toc-parser'
 
-var k = wowtoc.parse(fs.readFileSync('somefile.toc'));
-wowtoc.stringify(k);
+const file = await open(__dirname + '/../test/empty.toc', 'r');
+const toc = await parse(file)
+
+console.log(toc)
 ````
 
 ## Notes / Caveats
 * Does not acknowledge `#@no-lib-strip@`/`#@end-no-lib-strip@`
-* `Dependencies`/`OptionalDeps`/etc remain strings (easy to convert to arrays anyways)
-* Doesn't validate tag names (`## Bacon: Strip` is valid to it but not to WoW)
 
 ## License
+// TODO Apache
 MIT. See `LICENSE`

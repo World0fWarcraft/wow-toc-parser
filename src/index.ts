@@ -1,7 +1,3 @@
-/*
-https://wowwiki-archive.fandom.com/wiki/TOC_format
-https://wowpedia.fandom.com/wiki/TOC_format
-*/
 import { FileHandle } from 'fs/promises';
 
 export const TOC_PREFIX_TAG = '## '
