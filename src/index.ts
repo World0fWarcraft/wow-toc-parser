@@ -1,4 +1,4 @@
-import { FileHandle } from 'fs/promises';
+import { FileHandle } from 'fs/promises'
 
 export const TOC_PREFIX_TAG = '## '
 export const TOC_PREFIX_COMMENT = '#'
@@ -51,20 +51,20 @@ export enum WOW_LOCALES {
 export class TOC {
   Interface: number | null = null
   Title: string | null = null
-  TitleLocalized: Partial<Record<WOW_LOCALES,string>> = {}
+  TitleLocalized: Partial<Record<WOW_LOCALES, string>> = {}
   Notes: string | null = null
-  NotesLocalized: Partial<Record<WOW_LOCALES,string>> = {}
+  NotesLocalized: Partial<Record<WOW_LOCALES, string>> = {}
   IconTexture: string | null = null
   IconAtlas: string | null = null
   AddonCompartmentFunc: string | null = null
   AddonCompartmentFuncOnEnter: string | null = null
   AddonCompartmentFuncOnLeave: string | null = null
-  LoadOnDemand: boolean = false
+  LoadOnDemand = false
   Dependencies: string[] = []
   OptionalDeps: string[] = []
   LoadWith: string[] = []
   LoadManagers: string[] = []
-  DefaultState: boolean = true
+  DefaultState = true
   SavedVariables: string[] = []
   SavedVariablesPerCharacter: string[] = []
   Author: string | null = null
@@ -73,19 +73,19 @@ export class TOC {
   files: string[] = []
 }
 
-export const parse = async function(file: FileHandle, strict = true) {
-  const result = new TOC();
+export const parse = async function (file: FileHandle, strict = true) {
+  const result = new TOC()
   const allTags: Record<string, string> = {}
   for await (const line of file.readLines()) {
     if (strict && line.length > TOC_LINE_MAX_LENGTH) {
-      throw new Error('Line is longer than TOC_LINE_MAX_LENGTH characters, WoW will truncate!');
+      throw new Error('Line is longer than TOC_LINE_MAX_LENGTH characters, WoW will truncate!')
     }
 
-    if (line.slice(0, TOC_PREFIX_TAG.length) === TOC_PREFIX_TAG) {
+    if (line.startsWith(TOC_PREFIX_TAG)) {
       const tagData = line.slice(TOC_PREFIX_TAG.length).split(TOC_TAG_DELIMITER)
-      if(tagData.length !== 2){
-        if(strict){
-          throw new Error(`Tag could not be parsed: ${tagData}`)
+      if (tagData.length !== 2) {
+        if (strict) {
+          throw new Error(`Tag could not be parsed: ${tagData.join(',')}`)
         } else {
           continue
         }
@@ -93,21 +93,21 @@ export const parse = async function(file: FileHandle, strict = true) {
 
       const tagName = tagData[0].trim()
       const tagValue = tagData[1].trim()
-      if(strict && allTags[tagName]){
+      if (strict && allTags[tagName]) {
         throw new Error(`Duplicate value: ${tagName}`)
       }
 
-      allTags[tagName] = tagValue;
+      allTags[tagName] = tagValue
 
-      switch(tagName.toLowerCase()){
+      switch (tagName.toLowerCase()) {
         case TOC_TAG_NAME_INTERFACE.toLowerCase():
           result.Interface = Number(tagValue)
-          break;
+          break
         case TOC_TAG_NAME_TITLE.toLowerCase():
-          result.Title = tagValue  
-          break;
+          result.Title = tagValue
+          break
         case TOC_TAG_NAME_NOTES.toLocaleLowerCase():
-          result.Notes = tagValue  
+          result.Notes = tagValue
           break
         case TOC_TAG_NAME_ICONTEXTURE.toLowerCase():
           result.IconTexture = tagValue
@@ -143,7 +143,9 @@ export const parse = async function(file: FileHandle, strict = true) {
           result.SavedVariables = tagValue.split(TOC_TAG_LIST_DELIMITER).map((s) => s.trim())
           break
         case TOC_TAG_NAME_SAVEDVARIABESPERCHARACTER.toLowerCase():
-          result.SavedVariablesPerCharacter = tagValue.split(TOC_TAG_LIST_DELIMITER).map((s) => s.trim())
+          result.SavedVariablesPerCharacter = tagValue
+            .split(TOC_TAG_LIST_DELIMITER)
+            .map((s) => s.trim())
           break
         case TOC_TAG_NAME_AUTHOR.toLowerCase():
           result.Author = tagValue
@@ -152,31 +154,43 @@ export const parse = async function(file: FileHandle, strict = true) {
           result.Version = tagValue
           break
         default:
-          if(tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_TITLELOCALIZED) && tagName.length === TOC_TAG_PREFIX_TITLELOCALIZED.length+4){
-            const locale = tagName.slice(TOC_TAG_PREFIX_TITLELOCALIZED.length,TOC_TAG_PREFIX_TITLELOCALIZED.length+4)
-            if(Object.keys(WOW_LOCALES).includes(locale)){
+          if (
+            tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_TITLELOCALIZED) &&
+            tagName.length === TOC_TAG_PREFIX_TITLELOCALIZED.length + 4
+          ) {
+            const locale = tagName.slice(
+              TOC_TAG_PREFIX_TITLELOCALIZED.length,
+              TOC_TAG_PREFIX_TITLELOCALIZED.length + 4,
+            )
+            if (Object.keys(WOW_LOCALES).includes(locale)) {
               result.TitleLocalized[locale as WOW_LOCALES] = tagValue
-            } else if(strict){
+            } else if (strict) {
               throw new Error(`Locale not found: ${locale}`)
             }
-          } else if(tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_NOTESLOCALIZED) && tagName.length === TOC_TAG_PREFIX_NOTESLOCALIZED.length+4){
-            const locale = tagName.slice(TOC_TAG_PREFIX_NOTESLOCALIZED.length,TOC_TAG_PREFIX_NOTESLOCALIZED.length+4)
-            if(Object.keys(WOW_LOCALES).includes(locale)){
+          } else if (
+            tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_NOTESLOCALIZED) &&
+            tagName.length === TOC_TAG_PREFIX_NOTESLOCALIZED.length + 4
+          ) {
+            const locale = tagName.slice(
+              TOC_TAG_PREFIX_NOTESLOCALIZED.length,
+              TOC_TAG_PREFIX_NOTESLOCALIZED.length + 4,
+            )
+            if (Object.keys(WOW_LOCALES).includes(locale)) {
               result.NotesLocalized[locale as WOW_LOCALES] = tagValue
-            } else if(strict){
+            } else if (strict) {
               throw new Error(`Locale not found: ${locale}`)
             }
-          } else if(tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_DEP)){
+          } else if (tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_DEP)) {
             result.Dependencies = tagValue.split(TOC_TAG_LIST_DELIMITER).map((s) => s.trim())
-          } else if(tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_X)){
+          } else if (tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_X)) {
             result.xTags[tagName.slice(TOC_TAG_PREFIX_X.length)] = tagValue
-          } else if(strict){
+          } else if (strict) {
             throw new Error(`Unknown Tag name: ${tagName}`)
           }
       }
-    } else if (line.slice(0, 1) !== TOC_PREFIX_COMMENT && line.trim()) {
-      result.files.push(line.trimEnd());
-    } 
+    } else if (!line.startsWith(TOC_PREFIX_COMMENT) && line.trim()) {
+      result.files.push(line.trimEnd())
+    }
   }
-  return result;
-};
+  return result
+}
