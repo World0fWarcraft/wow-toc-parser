@@ -98,7 +98,7 @@ export const parse = async function(file: FileHandle, strict = true) {
     }
 
     if (line.slice(0, TOC_PREFIX_TAG.length) === TOC_PREFIX_TAG) {
-      const tagData = line.slice(TOC_PREFIX_TAG.length+1).split(TOC_TAG_DELIMITER)
+      const tagData = line.slice(TOC_PREFIX_TAG.length).split(TOC_TAG_DELIMITER)
       if(tagData.length !== 2){
         if(strict){
           throw new Error(`Tag could not be parsed: ${tagData}`)
@@ -173,14 +173,14 @@ export const parse = async function(file: FileHandle, strict = true) {
             if(Object.keys(WOW_LOCALES).includes(locale)){
               result.TitleLocalized[locale as WOW_LOCALES] = tagValue
             } else if(strict){
-              throw new Error(`locale not found ${locale}`)
+              throw new Error(`Locale not found: ${locale}`)
             }
           } else if(tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_NOTESLOCALIZED) && tagName.length === TOC_TAG_PREFIX_NOTESLOCALIZED.length+4){
             const locale = tagName.slice(TOC_TAG_PREFIX_NOTESLOCALIZED.length,TOC_TAG_PREFIX_NOTESLOCALIZED.length+4)
             if(Object.keys(WOW_LOCALES).includes(locale)){
               result.NotesLocalized[locale as WOW_LOCALES] = tagValue
             } else if(strict){
-              throw new Error(`locale not found ${locale}`)
+              throw new Error(`Locale not found: ${locale}`)
             }
           } else if(tagName.toLowerCase().startsWith(TOC_TAG_PREFIX_DEP)){
             result.Dependencies = tagValue.split(TOC_TAG_LIST_DELIMITER).map((s) => s.trim())
@@ -190,7 +190,7 @@ export const parse = async function(file: FileHandle, strict = true) {
             throw new Error(`Unknown Tag name: ${tagName}`)
           }
       }
-    } else if (line.slice(0, 1) !== TOC_PREFIX_COMMENT && !line.trim()) {
+    } else if (line.slice(0, 1) !== TOC_PREFIX_COMMENT && line.trim()) {
       result.files.push(line.trimEnd());
     } 
   }
