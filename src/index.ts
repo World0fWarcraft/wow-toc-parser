@@ -74,21 +74,8 @@ export class TOC {
   Version: string | null = null
   xTags: Record<string, string> = {}
   files: string[] = []
-
-  /*
-  toString(){
-    var result: string[] = [];
-    for(const tag in toc.allTags) {
-      result.push(`${TOC_PREFIX_TAG}${tag}${TOC_TAG_SEPARATOR} ${toc.allTags[tag]}`)
-    }
-    result.concat(this.files)
-    return result.join('\n');
-  };
-  */
 }
 
-// import { open } from 'fs/promises';
-// const file = await open('./words.txt', 'r');
 export const parse = async function(file: FileHandle, strict = true) {
   const result = new TOC();
   const allTags: Record<string, string> = {}
