@@ -2,14 +2,14 @@
   "name": "wow-toc-parser",
   "version": "1.0.0",
   "description": "World Of Warcraft Addon .toc file parser",
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "jest",
     "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zekesonxx/wow-toc"
+    "url": "https://github.com/Mojotrollz/wow-toc-parser"
   },
   "keywords": [
     "wow",
@@ -20,9 +20,9 @@
   "author": "Ulf Gebhardt",
   "license": "Apache2.0",
   "bugs": {
-    "url": "https://github.com/zekesonxx/wow-toc/issues"
+    "url": "https://github.com/Mojotrollz/wow-toc-parser/issues"
   },
-  "homepage": "https://github.com/zekesonxx/wow-toc",
+  "homepage": "https://github.com/Mojotrollz/wow-toc-parser",
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
