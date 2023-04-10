@@ -1,0 +1,49 @@
+## Interface: 123
+## Title: Complete Toc File
+## Title-frFR: Title frFR
+## Title-deDE: Title deDE
+## Title-enGB: Title enGB
+## Title-enUS: Title enUS
+## Title-itIT: Title itIT
+## Title-koKR: Title koKR
+## Title-zhCN: Title zhCN
+## Title-zhTW: Title zhTW
+## Title-ruRU: Title ruRU
+## Title-esES: Title esES
+## Title-esMX: Title esMX
+## Title-ptBR: Title ptBR
+## Notes: Describes the full Toc API
+## Notes-frFR: Notes frFR
+## Notes-deDE: Notes deDE
+## Notes-enGB: Notes enGB
+## Notes-enUS: Notes enUS
+## Notes-itIT: Notes itIT
+## Notes-koKR: Notes koKR
+## Notes-zhCN: Notes zhCN
+## Notes-zhTW: Notes zhTW
+## Notes-ruRU: Notes ruRU
+## Notes-esES: Notes esES
+## Notes-esMX: Notes esMX
+## Notes-ptBR: Notes ptBR
+## IconTexture: IconA
+## IconAtlas: IconB
+## AddonCompartmentFunc: Func1
+## AddonCompartmentFuncOnEnter: Func2
+## AddonCompartmentFuncOnLeave: Func3
+## LoadOnDemand: 1
+## Dependencies: Lib1, Lib2, Lib3
+## OptionalDeps: LibA, LibB, LibC
+## LoadWith: AddonA, AddonB, AddonC
+## LoadManagers: Addon1, Addon2, Addon3
+## DefaultState: disabled
+## SavedVariables: Var1, Var2, Var3
+## SavedVariablesPerCharacter: CVar1, CVar2, CVar3
+## Author: ulfgebhardt
+## Version: 456
+## X-Tag: XTag
+
+#Comment
+# Comment2
+
+Dornhoeschen.xml
+Rapunzel.lua

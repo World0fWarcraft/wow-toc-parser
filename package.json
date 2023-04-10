@@ -4,7 +4,7 @@
   "description": "World Of Warcraft addon toc file parser",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/_mocha -R spec",
+    "test": "jest",
     "build": "tsc"
   },
   "repository": {
@@ -24,9 +24,12 @@
   },
   "homepage": "https://github.com/zekesonxx/wow-toc",
   "devDependencies": {
+    "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
+    "jest": "^29.5.0",
     "mocha": "^1.21.4",
     "should": "^4.0.4",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
   }
 }

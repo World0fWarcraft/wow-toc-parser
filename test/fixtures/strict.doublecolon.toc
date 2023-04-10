@@ -1,0 +1,5 @@
+## Title: Strict Check - Double Colon
+## X-Invalid-Tag1:: Weird Tag1
+## X-Invalid-Tag2: : Weird Tag2
+## X-Invalid-Tag3: Weird Tag3p1 : Weird Tag3p2
+somefile.lua

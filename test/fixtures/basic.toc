@@ -1,0 +1,9 @@
+## Interface: 50400
+## Title: Basic Toc File
+## Notes: "Just basic"
+## Version: 4.2
+#Comment
+# Comment2
+
+Dornhoeschen.xml
+Rapunzel.lua

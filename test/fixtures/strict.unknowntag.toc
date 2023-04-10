@@ -1,0 +1,3 @@
+## Title: Strict Check - Unknown Tag
+## SomeTag: test
+somefile.lua

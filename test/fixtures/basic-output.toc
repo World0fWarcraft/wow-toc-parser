@@ -1,6 +1,0 @@
-## Title: Bacon
-## Interface: 50400
-## Notes: I hate everyone
-## Version: 4.3.2.1
-load.xml
-bacon.lua

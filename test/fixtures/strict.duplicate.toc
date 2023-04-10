@@ -1,0 +1,4 @@
+## Title: Strict Check - Duplicate Tag
+## X-Duplicate-Tag: First
+## X-Duplicate-Tag: Second
+somefile.lua
