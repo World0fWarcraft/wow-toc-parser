@@ -18,7 +18,7 @@ Furthermore the following documentation was used to create this tool:
 import { open } from 'fs/promises';
 import { parse } from 'wow-toc-parser'
 
-const file = await open(__dirname + '/../test/empty.toc', 'r');
+const file = await open('/path/to/file.toc', 'r');
 const toc = await parse(file)
 
 console.log(toc)
