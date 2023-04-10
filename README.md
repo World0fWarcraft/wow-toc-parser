@@ -2,7 +2,7 @@
 World Of Warcraft addon `.toc` file parser. Written in typescript.
 
 ## Ressources
-This implementation is based on based on [wow-toc](https://github.com/zekesonxx/wow-toc) by [Zoey Mertes](https://github.com/zekesonxx).
+This implementation is based on [wow-toc](https://github.com/zekesonxx/wow-toc) by [Zoey Mertes](https://github.com/zekesonxx).
 
 Furthermore the following documentation was used to create this tool:
 - http://wowpedia.org/TOC_format
@@ -11,6 +11,7 @@ Furthermore the following documentation was used to create this tool:
 
 ## Usage
 // TODO publish
+
 `$ npm install wow-toc`
 
 ````ts
@@ -28,4 +29,5 @@ console.log(toc)
 
 ## License
 // TODO Apache
+
 MIT. See `LICENSE`
