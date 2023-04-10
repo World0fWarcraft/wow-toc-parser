@@ -4,14 +4,14 @@ import { TOC, parse } from './'
 describe('parse TOC', () => {
   describe('empty file', () => {
     it('returns empty TOC object', async () => {
-        const file = await open(__dirname + '/../test/fixtures/empty.toc', 'r');
+        const file = await open(__dirname + '/../test/empty.toc', 'r');
         const toc = await parse(file)
         expect(toc).toEqual(new TOC())
     })
   })
   describe('basic file', () => {
     it('returns basic TOC object', async () => {
-        const file = await open(__dirname + '/../test/fixtures/basic.toc', 'r');
+        const file = await open(__dirname + '/../test/basic.toc', 'r');
         const toc = await parse(file)
         expect(toc).toEqual({
             AddonCompartmentFunc: null,
@@ -44,7 +44,7 @@ describe('parse TOC', () => {
   })
   describe('complete file', () => {
     it('returns complete TOC object', async () => {
-        const file = await open(__dirname + '/../test/fixtures/complete.toc', 'r');
+        const file = await open(__dirname + '/../test/complete.toc', 'r');
         const toc = await parse(file)
         expect(toc).toEqual({
             "AddonCompartmentFunc": "Func1",
@@ -129,7 +129,7 @@ describe('parse TOC', () => {
   })
   describe('Recount file', () => {
     it('returns Recount TOC object', async () => {
-        const file = await open(__dirname + '/../test/fixtures/Recount.toc', 'r');
+        const file = await open(__dirname + '/../test/Recount.toc', 'r');
         const toc = await parse(file)
         expect(toc).toEqual({
           AddonCompartmentFunc: null,
@@ -213,11 +213,11 @@ describe('parse TOC', () => {
   describe('strict checks', () => {
     describe('for lines longer then 1024 characters', () => {
         it('fails with strict = true', async () => {
-            const file = await open(__dirname + '/../test/fixtures/strict.1024.toc', 'r');
+            const file = await open(__dirname + '/../test/strict.1024.toc', 'r');
             expect(parse(file)).rejects.toThrowError('Line is longer than TOC_LINE_MAX_LENGTH characters, WoW will truncate!')
         })
         it('succeeds with strict = false', async () => {
-            const file = await open(__dirname + '/../test/fixtures/strict.1024.toc', 'r');
+            const file = await open(__dirname + '/../test/strict.1024.toc', 'r');
             const toc = await parse(file, false)
             expect(toc).toEqual({
               AddonCompartmentFunc: null,
@@ -251,11 +251,11 @@ describe('parse TOC', () => {
     })
   describe('for double colon', () => {
     it('fails with strict = true', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.doublecolon.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.doublecolon.toc', 'r');
         expect(parse(file)).rejects.toThrowError('Tag could not be parsed: X-Invalid-Tag1,, Weird Tag1')
     })
     it('succeeds with strict = false', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.doublecolon.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.doublecolon.toc', 'r');
         const toc = await parse(file, false)
         expect(toc).toEqual({
           AddonCompartmentFunc: null,
@@ -288,11 +288,11 @@ describe('parse TOC', () => {
 })
 describe('for duplicate tag', () => {
     it('fails with strict = true', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.duplicate.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.duplicate.toc', 'r');
         expect(parse(file)).rejects.toThrowError('Duplicate value: X-Duplicate-Tag')
     })
     it('succeeds with strict = false', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.duplicate.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.duplicate.toc', 'r');
         const toc = await parse(file, false)
         expect(toc).toEqual({
           AddonCompartmentFunc: null,
@@ -326,11 +326,11 @@ describe('for duplicate tag', () => {
 })
 describe('for unknown notes locale', () => {
     it('fails with strict = true', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.locale.notes.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.locale.notes.toc', 'r');
         expect(parse(file)).rejects.toThrowError('Locale not found: noNO')
     })
     it('succeeds with strict = false', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.locale.notes.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.locale.notes.toc', 'r');
         const toc = await parse(file, false)
         expect(toc).toEqual({
           AddonCompartmentFunc: null,
@@ -363,11 +363,11 @@ describe('for unknown notes locale', () => {
 })
 describe('for unknown title locale', () => {
     it('fails with strict = true', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.locale.title.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.locale.title.toc', 'r');
         expect(parse(file)).rejects.toThrowError('Locale not found: noNO')
     })
     it('succeeds with strict = false', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.locale.title.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.locale.title.toc', 'r');
         const toc = await parse(file, false)
         expect(toc).toEqual({
           AddonCompartmentFunc: null,
@@ -400,11 +400,11 @@ describe('for unknown title locale', () => {
 })
 describe('for unknown tag', () => {
     it('fails with strict = true', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.unknowntag.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.unknowntag.toc', 'r');
         expect(parse(file)).rejects.toThrowError('Unknown Tag name: SomeTag')
     })
     it('succeeds with strict = false', async () => {
-        const file = await open(__dirname + '/../test/fixtures/strict.unknowntag.toc', 'r');
+        const file = await open(__dirname + '/../test/strict.unknowntag.toc', 'r');
         const toc = await parse(file, false)
         expect(toc).toEqual({
           AddonCompartmentFunc: null,
