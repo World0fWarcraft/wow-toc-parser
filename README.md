@@ -28,6 +28,6 @@ console.log(toc)
 * Does not acknowledge `#@no-lib-strip@`/`#@end-no-lib-strip@`
 
 ## License
-// TODO Apache
+// TODO change license to Apache
 
 MIT. See `LICENSE`
